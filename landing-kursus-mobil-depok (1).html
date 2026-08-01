@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teman Nyetir — Kursus Setir Depok, Kuota Perdana Terbatas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C1F26;
+    --paper:#EEF0EA;
+    --paper-2:#E3E6DC;
+    --yellow:#F2B705;
+    --green:#3F6C51;
+    --green-dark:#2B4C39;
+    --muted:#5B6058;
+    --line:#C8CDBE;
+    --white:#FBFBF8;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Karla',sans-serif;
+    line-height:1.5;
+  }
+  h1,h2,h3{
+    font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    margin:0;
+  }
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:0.02em;
+  }
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  a{color:inherit;}
+
+  /* ---------- NAV ---------- */
+  header{
+    padding:20px 0;
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800;
+    font-size:22px;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand .plate{
+    background:var(--green);
+    color:var(--white);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    padding:4px 8px;
+    border-radius:4px;
+    letter-spacing:0.05em;
+  }
+  .nav-cta{
+    background:var(--ink);
+    color:var(--white);
+    padding:10px 18px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:56px 0 40px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:48px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--yellow);
+    color:var(--ink);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    padding:6px 12px;
+    border-radius:999px;
+    font-weight:500;
+    margin-bottom:20px;
+  }
+  .eyebrow::before{
+    content:"●";
+    color:var(--green-dark);
+    font-size:10px;
+  }
+  h1{
+    font-size:clamp(40px,6vw,68px);
+    line-height:0.98;
+    color:var(--ink);
+  }
+  h1 .accent{color:var(--green-dark);}
+  .hero p.lead{
+    font-size:18px;
+    color:var(--muted);
+    max-width:46ch;
+    margin-top:20px;
+  }
+  .hero-actions{
+    display:flex;
+    gap:14px;
+    margin-top:32px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:15px 26px;
+    border-radius:10px;
+    font-weight:700;
+    font-size:15px;
+    text-decoration:none;
+    border:2px solid transparent;
+    cursor:pointer;
+  }
+  .btn-primary{
+    background:var(--green-dark);
+    color:var(--white);
+  }
+  .btn-primary:hover{background:var(--ink);}
+  .btn-ghost{
+    background:transparent;
+    border-color:var(--ink);
+    color:var(--ink);
+  }
+
+  /* Road-sign panel */
+  .sign-panel{
+    background:var(--green-dark);
+    border-radius:var(--radius);
+    padding:26px 24px;
+    color:var(--white);
+    position:relative;
+    box-shadow:0 18px 40px -18px rgba(43,76,57,0.55);
+  }
+  .sign-panel .route{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    opacity:0.75;
+    margin-bottom:14px;
+    display:flex;
+    justify-content:space-between;
+  }
+  .sign-panel .dest{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    font-size:26px;
+    text-transform:uppercase;
+    line-height:1.15;
+    border-top:1px solid rgba(255,255,255,0.25);
+    padding-top:14px;
+    margin-top:4px;
+  }
+  .sign-panel .dest span{color:var(--yellow);}
+  .sign-panel .km{
+    display:flex;
+    justify-content:space-between;
+    margin-top:18px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+  }
+  .sign-panel .km b{
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:22px;
+    display:block;
+    color:var(--yellow);
+  }
+
+  /* Dashed road divider */
+  .road{
+    height:2px;
+    background-image:linear-gradient(to right, var(--ink) 60%, transparent 40%);
+    background-size:26px 2px;
+    background-repeat:repeat-x;
+    margin:56px 0;
+    opacity:0.35;
+  }
+
+  /* ---------- PAIN POINTS ---------- */
+  .section-title{
+    font-size:clamp(28px,4vw,40px);
+    max-width:22ch;
+  }
+  .section-lead{
+    color:var(--muted);
+    font-size:16px;
+    max-width:55ch;
+    margin-top:10px;
+  }
+  .pain-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:36px;
+  }
+  .pain-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .pain-card .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--green-dark);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .pain-card h3{
+    font-size:22px;
+    margin-top:10px;
+    text-transform:none;
+    letter-spacing:0;
+  }
+  .pain-card p{
+    color:var(--muted);
+    font-size:14.5px;
+    margin-top:8px;
+  }
+
+  /* ---------- KM POSTS (how it works) ---------- */
+  .km-list{
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+  .km-post{
+    position:relative;
+    padding-top:18px;
+  }
+  .km-post .marker{
+    width:46px;
+    height:56px;
+    background:var(--green-dark);
+    border-radius:6px 6px 3px 3px;
+    color:var(--white);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-family:'IBM Plex Mono',monospace;
+    margin-bottom:16px;
+  }
+  .km-post .marker .num{
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:24px;
+    font-weight:700;
+    color:var(--yellow);
+    line-height:1;
+  }
+  .km-post .marker .unit{
+    font-size:9px;
+    letter-spacing:0.1em;
+  }
+  .km-post h3{
+    font-size:19px;
+    text-transform:none;
+    letter-spacing:0;
+  }
+  .km-post p{
+    color:var(--muted);
+    font-size:14px;
+    margin-top:6px;
+  }
+
+  /* ---------- PROGRAM ---------- */
+  .program{
+    background:var(--ink);
+    color:var(--white);
+    border-radius:20px;
+    padding:44px 36px;
+    margin-top:0;
+  }
+  .program-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:36px;
+  }
+  .program h2{color:var(--white);}
+  .program .section-lead{color:#B9BEB2;}
+  .est-badge{
+    display:inline-block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    background:rgba(242,183,5,0.15);
+    color:var(--yellow);
+    padding:5px 10px;
+    border-radius:6px;
+    margin-bottom:14px;
+  }
+  .price-row{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    margin-top:10px;
+  }
+  .price-row .num{
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:44px;
+    font-weight:700;
+  }
+  .feature-list{
+    list-style:none;
+    padding:0;
+    margin:22px 0 0;
+    display:grid;
+    gap:12px;
+  }
+  .feature-list li{
+    display:flex;
+    gap:10px;
+    font-size:14.5px;
+    color:#DADFD1;
+  }
+  .feature-list li::before{
+    content:"—";
+    color:var(--yellow);
+  }
+  .price-tiers{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:32px;
+  }
+  .price-tier{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:12px;
+    padding:22px;
+    text-align:center;
+  }
+  .price-tier.featured{
+    background:var(--green-dark);
+    border-color:var(--yellow);
+    position:relative;
+  }
+  .price-tier.featured::before{
+    content:"PALING DIPILIH";
+    position:absolute;
+    top:-11px;
+    left:50%;
+    transform:translateX(-50%);
+    background:var(--yellow);
+    color:var(--ink);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    padding:4px 10px;
+    border-radius:999px;
+    letter-spacing:0.04em;
+    white-space:nowrap;
+  }
+  .price-tier .tier-name{
+    font-size:12px;
+    color:#B9BEB2;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .promo-tag{
+    display:inline-block;
+    background:var(--yellow);
+    color:var(--ink);
+    font-size:10px;
+    padding:3px 9px;
+    border-radius:999px;
+    letter-spacing:0.04em;
+    margin-bottom:8px;
+  }
+  .price-tier .price-row{
+    justify-content:center;
+    margin-top:4px;
+  }
+  .price-tier .price-row .num{font-size:30px;}
+  .price-tier .tier-sub{
+    font-size:12px;
+    color:#B9BEB2;
+    margin-top:8px;
+  }
+
+  /* ---------- FORM ---------- */
+  .form-section{
+    margin-top:0;
+  }
+  .form-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:40px;
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:40px;
+  }
+  .form-card .left h2{font-size:clamp(26px,3.6vw,34px);}
+  .slots{
+    margin-top:20px;
+    padding:16px;
+    background:var(--paper-2);
+    border-radius:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+  }
+  .slots b{
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:28px;
+    color:var(--green-dark);
+    display:block;
+  }
+  form{display:grid;gap:14px;}
+  .field label{
+    display:block;
+    font-size:12.5px;
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--muted);
+    margin-bottom:6px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .field input,.field select{
+    width:100%;
+    padding:13px 14px;
+    border:1.5px solid var(--line);
+    border-radius:8px;
+    font-family:'Karla',sans-serif;
+    font-size:15px;
+    background:var(--white);
+    color:var(--ink);
+  }
+  .field input:focus,.field select:focus{
+    outline:none;
+    border-color:var(--green-dark);
+  }
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .submit-btn{
+    margin-top:6px;
+    background:var(--green-dark);
+    color:var(--white);
+    border:none;
+    padding:16px;
+    border-radius:10px;
+    font-weight:700;
+    font-size:15.5px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+  }
+  .submit-btn:hover{background:var(--ink);}
+  .form-note{
+    font-size:12.5px;
+    color:var(--muted);
+    text-align:center;
+    margin-top:4px;
+  }
+  .thanks{
+    display:none;
+    text-align:center;
+    padding:30px 10px;
+  }
+  .thanks.show{display:block;}
+  .thanks .check{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--green-dark);color:var(--white);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 16px;font-size:26px;
+  }
+
+  footer{
+    padding:40px 0 60px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  @media (max-width:760px){
+    .hero-grid,.program-grid,.form-card{grid-template-columns:1fr;}
+    .pain-grid{grid-template-columns:1fr;}
+    .km-list{grid-template-columns:1fr 1fr;}
+    .row-2{grid-template-columns:1fr;}
+    .form-card{padding:26px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="nav-row">
+    <div class="brand"><span>Teman Nyetir</span><span class="plate mono">D 1 XX</span></div>
+    <a href="#daftar" class="nav-cta">Daftar Minat</a>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow mono">KELAS PERDANA · DEPOK &amp; SEKITARNYA</div>
+      <h1>Nggak perlu<br>sendirian belajar<br><span class="accent">setir mobil.</span></h1>
+      <p class="lead">Bukan sekadar bisa jalan lurus di lapangan kosong. Latihan langsung di kondisi nyata: putaran Margonda, parkir sempit ruko, sampai nyebrang rel &amp; underpass — ditemani teman yang sabar, bukan instruktur yang bikin makin grogi.</p>
+      <div class="hero-actions">
+        <a href="#daftar" class="btn btn-primary">Isi Form Minat →</a>
+        <a href="#program" class="btn btn-ghost">Lihat Rencana Program</a>
+      </div>
+    </div>
+    <div class="sign-panel">
+      <div class="route"><span>DARI</span><span>TUJUAN</span></div>
+      <div class="dest">Belum Pernah Pegang Setir <span>→</span> Bisa Nyetir Sendiri</div>
+      <div class="km">
+        <div><b id="slotCount">10</b>kuota kelas perdana</div>
+        <div><b>±3</b>minggu latihan</div>
+        <div><b>1:1</b>murid:instruktur</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="road"></div></div>
+
+<section class="wrap">
+  <h2 class="section-title">Kenapa banyak orang Depok akhirnya nyerah belajar nyetir sendiri</h2>
+  <p class="section-lead">Ini yang paling sering jadi alasan orang batal les mobil — kita rancang programnya untuk langsung menjawab tiga hal ini.</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="tag mono">Alasan 01</div>
+      <h3>Takut macet &amp; jalan sempit</h3>
+      <p>Latihan bukan cuma di jalan sepi. Kita ajak langsung hadapi macet Margonda dan gang sempit perumahan sejak sesi awal, biar terbiasa bukan kaget.</p>
+    </div>
+    <div class="pain-card">
+      <div class="tag mono">Alasan 02</div>
+      <h3>Jadwal kaku, susah nyocokin</h3>
+      <p>Jadwal les biasa maksa ikut jam kantor mereka. Di sini kamu pilih sendiri slot pagi/sore/weekend sesuai waktu luangmu.</p>
+    </div>
+    <div class="pain-card">
+      <div class="tag mono">Alasan 03</div>
+      <h3>Instruktur galak, jadi makin grogi</h3>
+      <p>Grogi di setir itu wajar. Instruktur dipilih yang sabar dan komunikatif, fokus bangun kepercayaan diri, bukan cuma teriak "rem-rem!"</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="road"></div></div>
+
+<section class="wrap" id="program">
+  <h2 class="section-title">Cara kerjanya</h2>
+  <div class="km-list">
+    <div class="km-post">
+      <div class="marker"><span class="num">1</span><span class="unit">LANGKAH</span></div>
+      <h3>Isi form minat</h3>
+      <p>Ceritakan kebutuhanmu — pemula total atau sudah bisa tapi belum PD.</p>
+    </div>
+    <div class="km-post">
+      <div class="marker"><span class="num">2</span><span class="unit">LANGKAH</span></div>
+      <h3>Dihubungi via WhatsApp</h3>
+      <p>Kami hubungi 1x1 untuk konfirmasi jadwal dan lokasi jemput.</p>
+    </div>
+    <div class="km-post">
+      <div class="marker"><span class="num">3</span><span class="unit">LANGKAH</span></div>
+      <h3>Pilih paket &amp; jadwal</h3>
+      <p>Sesuaikan jumlah sesi dan waktu latihan sesuai kesiapanmu.</p>
+    </div>
+    <div class="km-post">
+      <div class="marker"><span class="num">4</span><span class="unit">LANGKAH</span></div>
+      <h3>Mulai latihan</h3>
+      <p>Naik mobil, pegang setir, dan berangkat dari titik jemput terdekat.</p>
+    </div>
+  </div>
+
+  <div class="program" style="margin-top:48px;">
+    <div class="program-grid">
+      <div>
+        <div class="est-badge">HARGA KELAS PERDANA</div>
+        <h2>Pilih Paket Latihan</h2>
+        <p class="section-lead">Makin banyak sesi, makin hemat per sesinya. Cocok buat yang belum yakin butuh berapa kali latihan sampai PD sendiri.</p>
+      </div>
+      <div>
+        <ul class="feature-list">
+          <li>Mobil matic atau manual, kamu pilih</li>
+          <li>Jemput di titik terdekat area Depok</li>
+          <li>Instruktur 1 murid, tidak digabung</li>
+          <li>Latihan situasi nyata: parkir, putaran, tanjakan</li>
+        </ul>
+      </div>
+    </div>
+    <div class="price-tiers">
+      <div class="price-tier">
+        <div class="tier-name mono">Paket Coba</div>
+        <div class="price-row"><span class="num mono">Rp600rb</span></div>
+        <div class="tier-sub mono">5x latihan · Rp120rb/sesi</div>
+      </div>
+      <div class="price-tier featured">
+        <div class="tier-name mono">Paket Terlaris</div>
+        <div class="price-row"><span class="num mono">Rp750rb</span></div>
+        <div class="tier-sub mono">8x latihan · Rp94rb/sesi</div>
+      </div>
+      <div class="price-tier">
+        <div class="tier-name mono">Paket Mantap</div>
+        <div class="promo-tag mono">Harga Promo</div>
+        <div class="price-row"><span class="num mono">Rp900rb</span></div>
+        <div class="tier-sub mono">10x latihan · Rp90rb/sesi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="road"></div></div>
+
+<section class="wrap form-section" id="daftar">
+  <div class="form-card">
+    <div class="left">
+      <h2>Daftar minat, bukan bayar dulu.</h2>
+      <p class="section-lead">Form ini cuma untuk mendata siapa yang beneran butuh — belum ada biaya apapun. Kamu yang daftar duluan dapat prioritas jadwal.</p>
+      <div class="slots">
+        <b id="slotCount2">10</b>
+        sisa kuota pendataan kelas perdana di Depok
+      </div>
+    </div>
+    <div class="right">
+      <form id="minatForm">
+        <div class="field">
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" required placeholder="Nama lengkap">
+        </div>
+        <div class="row-2">
+          <div class="field">
+            <label for="wa">No. WhatsApp</label>
+            <input type="tel" id="wa" required placeholder="08xxxxxxxxxx">
+          </div>
+          <div class="field">
+            <label for="area">Area di Depok</label>
+            <input type="text" id="area" placeholder="Mis. Margonda, Sawangan">
+          </div>
+        </div>
+        <div class="row-2">
+          <div class="field">
+            <label for="level">Level saat ini</label>
+            <select id="level">
+              <option>Belum pernah pegang setir</option>
+              <option>Pernah coba, masih grogi</option>
+              <option>Bisa jalan, belum PD di jalan ramai</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="jadwal">Preferensi jadwal</label>
+            <select id="jadwal">
+              <option>Pagi hari kerja</option>
+              <option>Sore hari kerja</option>
+              <option>Weekend</option>
+              <option>Fleksibel</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="paket">Paket yang diminati</label>
+          <select id="paket">
+            <option>Paket Coba — 5x, Rp600rb</option>
+            <option selected>Paket Terlaris — 8x, Rp750rb</option>
+            <option>Paket Mantap — 10x, Rp900rb (Promo)</option>
+            <option>Belum tahu, mau tanya dulu</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-btn">Kirim &amp; Lanjut ke WhatsApp →</button>
+        <div class="form-note">Klik kirim akan membuka WhatsApp dengan pesan minat yang sudah terisi otomatis.</div>
+      </form>
+      <div class="thanks" id="thanksBox">
+        <div class="check">✓</div>
+        <h3 style="font-size:22px;text-transform:none;">Terima kasih!</h3>
+        <p style="color:var(--muted);">Selesaikan lewat WhatsApp yang baru terbuka ya. Kami akan hubungi balik untuk konfirmasi jadwal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  Draft halaman uji minat — Teman Nyetir.
+</footer>
+
+<script>
+  // GANTI nomor ini dengan nomor WhatsApp bisnis kamu (format 62xxxxxxxxxx tanpa + atau 0 di depan)
+  const WA_NUMBER = "6282258285609";
+
+  const form = document.getElementById('minatForm');
+  const thanksBox = document.getElementById('thanksBox');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const nama = document.getElementById('nama').value.trim();
+    const wa = document.getElementById('wa').value.trim();
+    const area = document.getElementById('area').value.trim() || "-";
+    const level = document.getElementById('level').value;
+    const jadwal = document.getElementById('jadwal').value;
+    const paket = document.getElementById('paket').value;
+
+    const pesan =
+      `Halo Teman Nyetir, saya berminat ikut kursus setir.\n\n` +
+      `Nama: ${nama}\n` +
+      `No. WA: ${wa}\n` +
+      `Area: ${area}\n` +
+      `Level: ${level}\n` +
+      `Preferensi jadwal: ${jadwal}\n` +
+      `Paket diminati: ${paket}\n\n` +
+      `Mohon konfirmasi jadwalnya ya. Terima kasih!`;
+
+    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(pesan)}`;
+
+    form.style.display = 'none';
+    thanksBox.classList.add('show');
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>
